@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Women Safety Chatbot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff0f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+    }.container {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #c2185b;
+}
+
+.chatbox {
+  background: white;
+  border: 2px solid #c2185b;
+  border-radius: 10px;
+  padding: 10px;
+  height: 300px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.input-area {
+  display: flex;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+}
+
+.input-area button {
+  padding: 10px 20px;
+  background: #c2185b;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.buttons button {
+  margin: 5px;
+  padding: 10px;
+  background-color: #c2185b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.message {
+  margin: 5px 0;
+}
+
+.user {
+  text-align: right;
+  color: blue;
+}
+
+.bot {
+  text-align: left;
+  color: green;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Women Safety Chatbot</h1>
+    <div class="chatbox" id="messages"></div>
+    <div class="input-area">
+      <input type="text" id="userInput" placeholder="Type your message...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+    <div class="buttons">
+      <button onclick="callTrustedContact()">Call Trusted Contact</button>
+      <button onclick="sendEmergencyAlert()">Emergency Alert</button>
+      <button onclick="openLiveLocation()">Share Live Location</button>
+    </div>
+  </div>  <script>
+    function sendMessage() {
+      const userInput = document.getElementById("userInput");
+      const messages = document.getElementById("messages");
+      const userText = userInput.value.trim();
+      if (userText === "") return;
+
+      const userMsg = document.createElement("div");
+      userMsg.classList.add("message", "user");
+      userMsg.textContent = "You: " + userText;
+      messages.appendChild(userMsg);
+
+      const botMsg = document.createElement("div");
+      botMsg.classList.add("message", "bot");
+      botMsg.textContent = "Bot: " + getBotResponse(userText);
+      messages.appendChild(botMsg);
+
+      messages.scrollTop = messages.scrollHeight;
+      userInput.value = "";
+    }
+
+    function getBotResponse(input) {
+      const lower = input.toLowerCase();
+      if (lower.includes("follow") || lower.includes("danger") || lower.includes("help")) {
+        return "Stay calm. Find a safe place. Call your trusted contact or use the emergency button below.";
+      } else if (lower.includes("hello") || lower.includes("hi")) {
+        return "Hello! How can I help you stay safe today?";
+      } else {
+        return "I'm here to assist you in emergencies. Type 'help', 'follow', or 'danger' if you're in trouble.";
+      }
+    }
+
+    function callTrustedContact() {
+      window.location.href = "tel:+919025200380";
+    }
+
+    function sendEmergencyAlert() {
+      alert("Emergency alert sent to your trusted contact!");
+    }
+
+    function openLiveLocation() {
+      window.open("https://maps.app.goo.gl/iBJXvBTmkKDe47rg7?g_st=awb", "_blank");
+    }
+  </script></body>
+</html>
